@@ -11,7 +11,7 @@ function Banner() {
     setAnimate(true)
   }
   const falseSwipeHandler = () => {
-    setOut(true)
+    // setOut(true)
     setAnimate(false)
   }
   var settings = {

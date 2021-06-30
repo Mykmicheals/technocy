@@ -137,7 +137,7 @@ function Login() {
 
           placeholder="enter your name"
         />
-        {nameInvalid &&<small className="error">Name must be greater than 2 characters </small>}
+        {nameInvalid && <small className="error">Name must be greater than 2 characters </small>}
         {/* 
         <input
           type='email'

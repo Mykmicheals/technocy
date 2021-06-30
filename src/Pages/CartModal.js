@@ -3,6 +3,7 @@ import CartContext from '../Store/cartContext'
 import { useCart } from "react-use-cart";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
+import CartOverlay from '../components/CartOverlay';
 
 
 
@@ -25,6 +26,7 @@ function CartModal() {
 
   return (
     <div>
+
       <div className='cart-overlay'>
         <h3 id='your-s-cart'>Your Shopping Cart</h3>
         {console.log(items)}

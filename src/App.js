@@ -72,7 +72,6 @@ function App() {
           <Route path='/details/:slug'>
             <DetailPage />
           </Route>
-
           <Route path='/cart'>
             <CartPage />
           </Route>
@@ -82,7 +81,6 @@ function App() {
           <Route path='/profile'>
             <Profile />
           </Route>
-
           <Route path='/contact'>
             <Contact />
           </Route>

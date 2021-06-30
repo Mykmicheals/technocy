@@ -34,7 +34,7 @@ function CategoryPage() {
         <div className='popular-section'>
             <h2 >{params.name}</h2>
             <div className='popular-all'>
-                
+
                 <div className='popular-left'>
                     <ul>
                         <h3> Categories</h3>

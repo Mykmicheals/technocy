@@ -17,8 +17,9 @@ import Loading from '../components/Loading';
 function Auth() {
 
     const params = useParams();
+    const [responseErr, setResponseErr] = useState()
 
-    var signUp = params.name == 'signup'
+
     let history = useHistory();
 
     const [signUprror, setSignUpError] = useState(false)
@@ -85,8 +86,10 @@ function Auth() {
         ? "contact-form-input invalid-input"
         : "contact-form-input";
 
+    var signUp = params.name == 'signup'
+    
 
-    const formValid = signUp ? (nameIsValid && emailValid && passwordValid) : (emailValid && passwordValidcle)
+    const formValid = signUp ? (nameIsValid && emailValid && passwordValid) : (nameIsValid && passwordValid)
 
 
     const body = {
@@ -129,7 +132,7 @@ function Auth() {
         if (formValid) {
             setLoading(true);
 
-            const response = await fetch(`http://127.0.0.1:8000/${signUp ? 'signup' : 'login'}/`,
+            const response = await fetch(`http://127.0.0.1:8000/${signUp ? 'registerusers' : 'user/api/token'}/`,
                 {
                     method: 'POST',
                     headers: {
@@ -139,16 +142,19 @@ function Auth() {
                 })
             setLoading(false);
             const data = await response.json()
+            if (response.ok === false) {
+                setSignUpError(true)
+                setResponseErr(data.username[0]) 
+            } else {
+                history.push('/')
+                localStorage.setItem('token', JSON.stringify(data.access))
+                localStorage.setItem('user', data.user)
+                var userName = localStorage.getItem('user')
+                var token = localStorage.getItem('token')
+                authCtx.login(userName,token)
+            }
             console.log(data)
-            signUp && history.push('/verifyEmail')
             !signUp && history.push('/')
-
-
-            // if (data.detail) {
-            //     setSignUpError(true);
-            // } else {
-            //     history.push('/verifyEmail')
-            // }
 
         } else {
             setEmailTouched(true)
@@ -164,15 +170,16 @@ function Auth() {
             <MDBCard style={{ maxWidth: '22rem', textAlign: 'center', margin: 'auto', marginTop: '7rem' }}>
                 <MDBCardBody >
                     <MDBCardTitle>{signUp ? 'SignUp' : 'Login'}</MDBCardTitle>
-                    {signUprror && <h3>Email has already been taken</h3>}
+                    {signUprror && <p id='error'>{responseErr }</p>}
+                    {/* {signUprror && <h3>Email has already been taken</h3>} */}
                     <form>
-                        {signUp && <MDBInput
-                            onChange={userNameHandler} onBlur={userNameBlurHandler}
-                            className={`mt-4 ${NameClass}`} type='username' id='form2Example1' label=' Username' />}
-                        {nameInvalid && <small className="error">Name must be greater than 2 characters </small>}
                         <MDBInput
+                            onChange={userNameHandler} onBlur={userNameBlurHandler}
+                            className={`mt-4 ${NameClass}`} type='username' id='form2Example1' label=' Username' />
+                        {nameInvalid && <small className="error">Name must be greater than 2 characters </small>}
+                        {signUp && <MDBInput
                             onChange={emailHandler} onBlur={emailBlurHandler}
-                            className={`mt-4 ${emailClass}`} type='email' id='form2Example1' label='Email address' />
+                            className={`mt-4 ${emailClass}`} type='email' id='form2Example1' label='Email address' />}
                         {emailInvalid && <small className="error">Enter a valid email address </small>}
                         <MDBInput
                             onChange={passwordHandler} onBlur={passwordBlur}
