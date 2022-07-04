@@ -1,0 +1,32 @@
+.time {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #232323;
+    letter-spacing: .5px;
+    margin-top: 2rem;
+}
+
+.time p {
+    display: inline;
+    background-color: whitesmoke;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 100%;
+}
+
+@media(max-width: 800px) {
+    .time {
+        font-size: 1rem;
+    }
+    .time p{
+        padding: 0.5rem;
+    }
+
+    .time p {
+        padding: 2rem;
+        font-size: 1rem;
+
+    }
+
+}
