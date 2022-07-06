@@ -7,7 +7,7 @@ function Categories() {
     const [popular, setPopular] = useState([])
 
     const fetchHandler = async () => {
-        const response = await fetch('http://127.0.0.1:8000')
+        const response = await fetch('http://127.0.0.1:8000/category')
         const data = await response.json()
         setPopular(data)
     }
