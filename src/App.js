@@ -18,6 +18,8 @@ import Profile from './Pages/Profile'
 import CartContext from './Store/cartContext'
 import { CartProvider } from 'react-use-cart'
 import CartModal from './Pages/CartModal'
+import Contact from './Pages/Contact'
+import About from './Pages/About'
 
 
 
@@ -39,7 +41,10 @@ function App() {
 
       <Route path='/' exact>
         <HomeScreen />
-      </Route>
+        </Route>
+        <Route path='/about' exact>
+          <About />
+        </Route>
 
       <Route path='/login'>
         <LoginPage />
@@ -69,7 +74,10 @@ function App() {
         <Profile />
       </Route>
 
-      {/* <Newsletter /> */}
+        <Route path='/contact'>
+          <Contact />
+        </Route>
+
       <Footer />
       <Rodal
         customStyles={{ overflowY: 'scroll', textAlign: 'center' }}

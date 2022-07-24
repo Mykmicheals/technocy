@@ -48,14 +48,17 @@ const cartCrx = useContext(CartContext)
 
   return (
     <nav className="navigation">
+
       <span className="nav-span">
-        <NavLink activeClassName="active" to="/">
-          <span>Home</span>
+        <NavLink activeClassName="active" to="/about">
+          <span>About</span>
         </NavLink>
       </span>
+
       <span className="nav-span">
         <span onClick={cartHandler}>Cart <span id="cart-number">{totalUniqueItems}</span> </span>
       </span>
+
       <span className="nav-span">
         <NavLink activeClassName="active" to="/contact">
           <span>Contact</span>

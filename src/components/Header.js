@@ -78,8 +78,8 @@ function Header() {
 
       <span onClick={menuHandler} className="icon">
         <span className="res-span">
-            <Icon icon="bx:menu-alt-right" />
-        
+          <Icon icon="bx:menu-alt-right" />
+
         </span>
 
       </span>

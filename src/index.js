@@ -11,12 +11,12 @@ import { CartContextProvider } from './Store/cartContext';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-  
+
       <AuthContextProvider>
         <CartContextProvider>
           <App />
-          </CartContextProvider>
-        </AuthContextProvider> 
+        </CartContextProvider>
+      </AuthContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

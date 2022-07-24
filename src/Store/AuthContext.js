@@ -26,7 +26,7 @@ export const AuthContextProvider = (props) => {
         setFirstName(firstName)
         localStorage.setItem('token', token)
         localStorage.setItem('user', userName)
-        localStorage.setItem('firstname',[details[0]])
+        localStorage.setItem('firstname', [details[0]])
         // setDetails([...items])
 
         // setUserName(userName)
