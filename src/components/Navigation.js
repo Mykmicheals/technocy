@@ -46,6 +46,10 @@ const cartCrx = useContext(CartContext)
     navigate.push(`/search/${search}`)
   }
 
+  const showLoading = () => {
+    authCtx.loadingHandler()
+  }
+
   return (
     <nav className="navigation">
 
@@ -61,7 +65,7 @@ const cartCrx = useContext(CartContext)
 
       <span className="nav-span">
         <NavLink activeClassName="active" to="/contact">
-          <span>Contact</span>
+          <span onClick={showLoading}>Contact</span>
         </NavLink>
       </span>
 

@@ -1,7 +1,6 @@
 import React, { Fragment, useContext } from 'react'
 import Footer from './components/Footer'
 import Header from './components/Header'
-// import Newsletter from './components/Newsletter'
 import { Route } from 'react-router-dom'
 import LoginPage from './Pages/LoginPage'
 import HomeScreen from './Pages/HomeScreen'
@@ -20,83 +19,81 @@ import { CartProvider } from 'react-use-cart'
 import CartModal from './Pages/CartModal'
 import Contact from './Pages/Contact'
 import About from './Pages/About'
+import AuthContext from './Store/AuthContext'
+import Loading from './components/Loading';
+import CartOverlay from './components/CartOverlay'
 
 
 
 function App() {
   const cartCtx = useContext(CartContext)
-
-  const cartHandler = (event) => {
-    cartCtx.cartFunc()
-    console.log(cartCrx.cartOpen)
-  };
+  const authCtx = useContext(AuthContext)
 
   const closeCart = () => {
     cartCtx.cartClose()
   }
   return (
-    <ProductProvider>
-      <CartProvider>
-      <Header />
+    <Fragment>
+      {!authCtx.loading ? <ProductProvider>
+        <CartProvider>
+          <Header />
 
-      <Route path='/' exact>
-        <HomeScreen />
-        </Route>
-        <Route path='/about' exact>
-          <About />
-        </Route>
+          <Route path='/' exact>
+            <HomeScreen />
+          </Route>
+          <Route path='/about' exact>
+            <About />
+          </Route>
 
-      <Route path='/login'>
-        <LoginPage />
-      </Route>
-      <Route path='/signup'>
-        <SignUp />
-      </Route>
-
-
-      <Route path='/all/:id'>
-        <PopularProducts />
-      </Route>
-      <Route path='/category/:name'>
-        <CategoryPage />
-      </Route>
-      <Route path='/details/:slug'>
-        <DetailPage />
-      </Route>
-
-      <Route path='/cart'>
-        <CartPage />
-      </Route>
-      <Route path='/search/:params'>
-        <SearchResult />
-      </Route>
-      <Route path='/profile'>
-        <Profile />
-      </Route>
-
-        <Route path='/contact'>
-          <Contact />
-        </Route>
-
-      <Footer />
-      <Rodal
-        customStyles={{ overflowY: 'scroll', textAlign: 'center' }}
-        visible={cartCtx.cartOpen}
-        onClose={closeCart}
-        closeOnEsc='true'
-        animation='slideLeft'
-        // height='420'
-        showMax='false'
-      >
-    <CartModal/>
-      </Rodal>
-
-      </CartProvider>
-    </ProductProvider>
+          <Route path='/login'>
+            <LoginPage />
+          </Route>
+          <Route path='/signup'>
+            <SignUp />
+          </Route>
 
 
+          <Route path='/all/:id'>
+            <PopularProducts />
+          </Route>
+          <Route path='/category/:name'>
+            <CategoryPage />
+          </Route>
+          <Route path='/details/:slug'>
+            <DetailPage />
+          </Route>
 
-    // https://demo2.pavothemes.com/technocy/home-2/
+          <Route path='/cart'>
+            <CartPage />
+          </Route>
+          <Route path='/search/:params'>
+            <SearchResult />
+          </Route>
+          <Route path='/profile'>
+            <Profile />
+          </Route>
+
+          <Route path='/contact'>
+            <Contact />
+          </Route>
+
+          <Footer />
+          {/* <Rodal
+            customStyles={{ overflowY: 'scroll', textAlign: 'center' }}
+            visible={cartCtx.cartOpen}
+            onClose={closeCart}
+            closeOnEsc='true'
+            animation='slideLeft'
+            // height='420'
+            showMax='false'
+          >
+            <CartModal />
+          </Rodal> */}
+          {cartCtx.cartOpen &&  <CartOverlay />}
+
+        </CartProvider>
+      </ProductProvider> : <Loading />}
+    </Fragment>
   )
 }
 

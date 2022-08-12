@@ -349,7 +349,7 @@ ul {
     padding-top: 4rem;
 }
 
-.my-banner-inner{
+.my-banner-inner {
     height: 80vh;
     background-repeat: no-repeat;
     background-size: cover;
@@ -422,12 +422,13 @@ ul {
 }
 
 @media (max-width:800px) {
-  .my-banner-text{
-      padding-left: 4rem;
-  }  
-.my-banner-text h3 {
-    width: 80%;
-}
+    .my-banner-text {
+        padding-left: 4rem;
+    }
+
+    .my-banner-text h3 {
+        width: 80%;
+    }
 }
 
 @media (max-width:600px) {
@@ -436,6 +437,7 @@ ul {
         padding-top: 30vh;
         padding-left: 1rem;
     }
+
     .my-banner-text p {
         font-size: 0.9rem;
     }
@@ -891,12 +893,14 @@ ul {
     font-weight: 700;
     text-transform: uppercase;
 }
+
 .newsletter p {
     text-align: center;
     font-size: 17px;
     line-height: 24px;
     color: rgb(192, 192, 192);
 }
+
 .newsletter input {
     border-width: 2px;
     border-radius: 5px 5px 5px 5px;
@@ -909,6 +913,7 @@ ul {
     border-color: rgb(173, 171, 171);
 
 }
+
 .newsletter-button {
     border-width: 2px;
     border-style: solid;
@@ -937,34 +942,39 @@ ul {
 }
 
 @media (max-width:1200px) {
-.newsletter{
-  grid-template-columns: 1fr 1fr;
-}
-.follow-us{
-    text-align: center;
-    margin: auto;
-}
-.newsletter-span{
-    text-align: center;
-    margin: auto;
-}
+    .newsletter {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .follow-us {
+        text-align: center;
+        margin: auto;
+    }
+
+    .newsletter-span {
+        text-align: center;
+        margin: auto;
+    }
 }
 
 @media (max-width:1023px) {
     .newsletter {
         grid-template-columns: 1fr;
-    }.newsletter-span{
+    }
+
+    .newsletter-span {
         margin: 1rem 0;
     }
 }
 
 @media (max-width:490px) {
-.newsletter-button{
-    margin-top: 1rem;
-}
-.follow-us{
-    margin-top: 10px;
-}
+    .newsletter-button {
+        margin-top: 1rem;
+    }
+
+    .follow-us {
+        margin-top: 10px;
+    }
 }
 
 /* <----------- newsletter end ----------> */
@@ -985,10 +995,11 @@ ul {
 }
 
 @media (max-width:700px) {
-    .footer{
+    .footer {
         grid-template-columns: 1fr;
     }
-    .footer-grid{
+
+    .footer-grid {
         margin-top: 13px;
     }
 }
@@ -1050,7 +1061,7 @@ ul {
 
 /* <------------Popular page ---------> */
 
-.popular-section h2{
+.popular-section h2 {
     margin-top: 7rem;
     text-align: center;
 }
@@ -1122,8 +1133,9 @@ ul {
     margin: 1rem;
 
 }
-.popular-left h3{
-font-size: 1.1rem;
+
+.popular-left h3 {
+    font-size: 1.1rem;
 }
 
 .popular-right-inner {
@@ -1131,35 +1143,39 @@ font-size: 1.1rem;
 }
 
 @media (max-width:1270px) {
-    .popular-right ul{
+    .popular-right ul {
         grid-template-columns: 1fr 1fr;
     }
 }
+
 @media (max-width:1100px) {
-.popular-left{
-    display: none;
-}
-.popular-right ul {
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-left: 0;
-}
-.popular-right li{
-    padding: 2rem 1rem;
-}
-.popular-all{
-    grid-template-columns: 1fr;
-}
+    .popular-left {
+        display: none;
+    }
+
+    .popular-right ul {
+        grid-template-columns: 1fr 1fr 1fr;
+        margin-left: 0;
+    }
+
+    .popular-right li {
+        padding: 2rem 1rem;
+    }
+
+    .popular-all {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width:1023px) {
-.popular-right ul {
-    grid-template-columns: 1fr 1fr;
-}
+    .popular-right ul {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (max-width:592px) {
     .popular-right ul {
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
     }
 }
 
@@ -1180,6 +1196,7 @@ font-size: 1.1rem;
     mix-blend-mode: multiply;
     width: 22rem
 }
+
 .description {
     text-align: left;
     width: 100%;
@@ -1205,10 +1222,10 @@ font-size: 1.1rem;
 }
 
 @media (max-width:1100px) {
-.container img {
-padding: 5px;
-width: 19rem;
-}
+    .container img {
+        padding: 5px;
+        width: 19rem;
+    }
 }
 
 @media (max-width:800px) {
@@ -1216,7 +1233,8 @@ width: 19rem;
         padding: 2px;
         width: 15rem;
     }
-    .description h3{
+
+    .description h3 {
         font-size: 16px;
     }
 }
@@ -1236,9 +1254,12 @@ width: 19rem;
 
 .cart-inner {
     display: grid;
-    grid-template-columns: 20% 35% 20% 15% 10%;
+    grid-template-columns: 1fr 1fr;
     margin: 9px;
+
 }
+
+
 
 .cart-delete {
     cursor: pointer;

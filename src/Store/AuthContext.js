@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react, { useState,useEffect } from "react";
 
 const AuthContext = react.createContext({
     token: '',
@@ -6,7 +6,8 @@ const AuthContext = react.createContext({
     isLoggedin: false,
     // login: (token,userName) => { },
     login: (token) => { },
-    logout: () => { }
+    logout: () => { },
+    loading: false,
 })
 
 export const AuthContextProvider = (props) => {
@@ -18,8 +19,22 @@ export const AuthContextProvider = (props) => {
     const [firstName, setFirstName] = [initialFirstName]
     const [details, setDetails] = useState([])
 
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+  const timer = setTimeout(() => {
+            setLoading(false)
+        }, 3000);
+        return () => clearTimeout(timer);
+    }, [loading])
+
+
     const userIsLoggedIn = !!token
 
+
+    const loadingHandler = () => {
+        setLoading(true)
+    }
     const loginHandler = (token, userName, details) => {
         setToken(token);
         setUserName(userName)
@@ -47,6 +62,8 @@ export const AuthContextProvider = (props) => {
         isLoggedIn: userIsLoggedIn,
         login: loginHandler,
         logout: logoutHandler,
+        loading: loading,
+        loadingHandler:loadingHandler,
     }
     return (
         <AuthContext.Provider value={contextValue}>
