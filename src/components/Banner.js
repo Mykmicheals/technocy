@@ -1,129 +1,73 @@
 import React, { useState } from 'react'
-import Slider from 'react-slick'
-import img1 from '../assets/images/banner7.jpg'
-import img2 from '../assets/images/banner5.jpg'
-import img3 from '../assets/images/img3.jpg'
-import img4 from '../assets/images/img4.jpg'
-import { useSpring, animated } from 'react-spring'
+import Slider from "react-slick";
+import bg1 from '../assets/images/bg-1.png'
+import bg2 from '../assets/images/bg-2.png'
+
 
 function Banner() {
-  const [show, setShow] = useState(false)
-
-  const slideChange = () => {
-    setShow(true)
+  const [animate, setAnimate] = useState(false)
+  const [slideOut, setOut] = useState(false)
+  const swipeHandler = () => {
+    setAnimate(true)
   }
-  const beforeChange = () => {
-    setShow(false)
+  const falseSwipeHandler = () => {
+    setOut(true)
+    setAnimate(false)
   }
-
-  const settings = {
-    dots: true,
-    // infinite: true,
-    // speed: 500,
+  var settings = {
+    infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 1000,
+    speed: 2000,
+    fade: true,
+    autoplaySpeed: 5000,
     cssEase: "linear",
-    arrows: false,
-    afterChange: slideChange,
-    beforeChange: beforeChange
+    afterChange: swipeHandler,
+    onInit: swipeHandler,
+    beforeChange: falseSwipeHandler
   };
-  const props = useSpring({
-    from: { transform: "translateX(0%)" },
-    to: [
-      { transform: "translateX(80%)" },
-      { transform: "translateX(50%)" },
-
-    ],
-  })
-
-  const paragraphStyle = useSpring({
-    from: { opacity: 0, transform: "translateX(-0%)" },
-    to: [
-      { opacity: 1, transform: "translateX(-200%)" },
-      { opacity: 1, transform: "translateX(-130%)" },
-    ],
-  })
-
-  const buttonStyle = useSpring({
-    from: { opacity: 0, transform: "translateY(-100%)" },
-    to: [
-      { opacity: 0, transform: "translateY(180%)" },
-      { opacity: 1, transform: "translateY(50%)" },
-
-    ],
-  })
   return (
-    <div className='banner'>
-      <Slider {...settings}>
 
-        <div className='banner-outer'>
+    <div className='hero-section'>
+      <div className='slider-section'>
+        <Slider {...settings}>
+          <div className='slider-each slider1'>
+            <div>
+              <img className='slider-image' src={bg1} />
+           </div>
+            <div className='slider-word'>
+              {animate && <h3 className='animate-hero-h'>Redefine your world with 150mp camera</h3>}
 
-          <img src={img3} alt={img3} />
-          <span className='banner-text'>
-            {show && <div>
-              <animated.div style={paragraphStyle}>
-                <p>We Professional dealers</p>
-              </animated.div>
-              <animated.div style={props}>
-                <h4>Redefine Your World With 150mp camera</h4>
-              </animated.div>
-              <animated.div style={buttonStyle}>
-                <button className='banner-button'>Shop Now</button>
-              </animated.div>
+              {animate && <p className='animate-hero-p'>Get Incredible deals with up to 40%</p>}
             </div>
-            }
-          </span>
-
-        </div>
-
-        <div className='banner-outer'>
-          <img src={img1} alt={img1} />
-          <div className='banner-text'>
-            {show && <div>
-              <animated.div style={paragraphStyle}>
-                <p>We Professional dealers</p>
-              </animated.div>
-              <animated.div style={props}>
-                <h4>Redefine Your World With 150mp camera</h4>
-              </animated.div>
-              <animated.div style={buttonStyle}>
-                <button className='banner-button'>Shop Now</button>
-              </animated.div>
-            </div>}
-
           </div>
 
-        </div>
-        <div className='banner-outer'>
+          <div className='slider-each slider2'>
+            <div >
+              <img className='slider-image' src={bg2} />
+            </div>
+            <div className='slider-word'>
+              {animate && <h3 className='animate-hero-h'>Redefine your world with 150mp camera</h3>}
 
-          <img src={img2} alt={img2} />
-          <span className='banner-text'>
+              {animate && <p className='animate-hero-p'>Get Incredible deals with up to 40%</p>}
+            </div>
+          </div>
 
-            {/* { show && <animated.div style={props}>
-              <h4>Redefine Your World With 150mp camera</h4>
-            </animated.div>} */}
-
-            {show && <div>
-              <animated.div style={paragraphStyle}>
-                <p>We Professional dealers</p>
-              </animated.div>
-              <animated.div style={props}>
-                <h4>Redefine Your World With 150mp camera</h4>
-              </animated.div>
-              <animated.div style={buttonStyle}>
-                <button className='banner-button'>Shop Now</button>
-              </animated.div>
-            </div>}
-
-
-          </span>
-
-        </div>
-
-      </Slider>
+          {/* <div className='slider-each slider-image2'>
+            <div className='slider-image'>
+              <img src={bg2} />
+            </div>
+            <div className='slider-word'>
+              {animate && <h3 className={animate ? 'animate-hero-h' : 'animate-outer'}>Delivering Excellence</h3>}
+              {animate && <p className='animate-hero-p'>Buy for as low as N50,000</p>}
+            </div>
+          </div> */}
+        </Slider>
+      </div>
     </div>
+
+
   )
 }
 

@@ -8,8 +8,7 @@ import MyBanner from '../components/MyBanner'
 function HomeScreen() {
   return (
     <Fragment>
-      {/* <Banner /> */}
-      <MyBanner />
+      <Banner />
       <Categories />
       <Featured />
       <Blogs />
