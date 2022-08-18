@@ -10,7 +10,7 @@ import CartContext from "../Store/cartContext";
 function Navigation() {
   const authCtx = useContext(AuthContext)
   const productCtx = useContext(ProductContext)
-const cartCrx = useContext(CartContext)
+  const cartCrx = useContext(CartContext)
   const { totalUniqueItems } = useCart();
   const [search, setSearch] = useState('')
   const [showLoginNav, setShowLoginNav] = useState(false)
@@ -43,6 +43,7 @@ const cartCrx = useContext(CartContext)
 
   const searchSubmit = (event) => {
     event.preventDefault()
+    authCtx.loadingHandler()
     navigate.push(`/search/${search}`)
   }
 

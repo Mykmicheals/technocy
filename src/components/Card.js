@@ -12,7 +12,6 @@ function Card({ each }) {
     const showModal = (e) => {
         e.preventDefault()
         cartCtx.cartFunc()
-
     }
 
     const buttonShowHandler = (id) => {

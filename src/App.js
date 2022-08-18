@@ -34,10 +34,11 @@ function App() {
   }
   return (
     <Fragment>
-      {!authCtx.loading ? <ProductProvider>
+    <ProductProvider>
         <CartProvider>
+       
           <Header />
-
+          {!authCtx.loading ?  <div onClick={cartCtx.cartClose}>
           <Route path='/' exact>
             <HomeScreen />
           </Route>
@@ -77,22 +78,12 @@ function App() {
             <Contact />
           </Route>
 
-          <Footer />
-          {/* <Rodal
-            customStyles={{ overflowY: 'scroll', textAlign: 'center' }}
-            visible={cartCtx.cartOpen}
-            onClose={closeCart}
-            closeOnEsc='true'
-            animation='slideLeft'
-            // height='420'
-            showMax='false'
-          >
-            <CartModal />
-          </Rodal> */}
+            <Footer />
+          </div>: <Loading />}
           {cartCtx.cartOpen &&  <CartOverlay />}
 
         </CartProvider>
-      </ProductProvider> : <Loading />}
+      </ProductProvider> 
     </Fragment>
   )
 }

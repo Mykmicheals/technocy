@@ -543,104 +543,6 @@ ul {
     }
 }
 
-
-
-/* <---------------Deal-----------------> */
-
-.deal {
-    width: 80%;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 45% 55%;
-    margin-top: 4rem;
-}
-
-.deal h2 {
-    font-size: 4rem;
-    font-weight: 700;
-    line-height: 75px;
-    margin-bottom: 20px;
-    color: #232323;
-    font-family: "Roboto", sans-serif;
-    text-align: center;
-}
-
-.deal p {
-    font-size: 34px;
-    font-weight: 500;
-    line-height: 34px;
-    font-family: #232323;
-    position: relative;
-    margin-bottom: 20px;
-    color: #008081;
-    letter-spacing: 1.5px;
-    text-align: center;
-}
-
-.deal small {
-    font-size: 1.23rem;
-    line-height: 24px;
-    font-weight: 400;
-    letter-spacing: .42px;
-    color: #787878;
-    margin-bottom: 25px;
-}
-
-.deal img {
-    mix-blend-mode: multiply;
-}
-
-
-.deal span {
-    margin-left: 5.1rem;
-}
-
-@media(max-width: 1024px) {
-    .deal {
-        grid-template-columns: 100%;
-        width: 90%;
-    }
-
-    .deal h2 {
-        font-size: 3rem;
-    }
-
-    .deal img {
-        width: 15rem;
-        text-align: center;
-        margin: auto;
-    }
-
-}
-
-@media(max-width: 800px) {
-    .deal {
-
-        width: 100%;
-    }
-
-    .deal h2 {
-        font-size: 2rem;
-    }
-
-    .deal p {
-        font-size: 2rem;
-    }
-
-    .deal img {
-        width: 15rem;
-        text-align: center;
-        margin: auto;
-    }
-
-}
-
-.deal button {
-    margin-top: 3rem;
-    text-align: center;
-
-}
-
 /* <---------- end features --------> */
 
 .blog-outer {
@@ -1182,6 +1084,8 @@ ul {
 
 .search-head {
     margin-top: 3rem;
+    margin: auto;
+ -left: 4rem;
 }
 
 .search-icon {

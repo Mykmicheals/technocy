@@ -65,23 +65,11 @@ function Featured() {
   var token = localStorage.getItem('token')
   return (
     <div className='featured-outer'>
-
+      
       <Card each={popularP} />
       <Card each={Laptops5} />
       <Card each={Phones5} />
       <Card each={Televisions} />
-
-      <div className='deal'>
-        <img src={`http://127.0.0.1:8000/${popularP[2]?.image}`} />
-        <span>
-          <h2>Deal of the Day</h2>
-          <p>Save Up to 60% Off!!</p>
-          <small>Praesent nec finibus massa. Phasellus id auctor lacus, at iaculis lorem. Donec quis arcu elit. In vehicula purus se.</small><br />
-          <Time />
-          <button className='button'> Buy Now</button>
-        </span>
-      </div>
-
     </div>
   )
 }
