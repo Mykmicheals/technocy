@@ -37,20 +37,15 @@ function DetailPage() {
 
   return (
     sucess && <div >
-      <form className='container'>
+      <div className='container'>
         <div>
           <img src={`http://127.0.0.1:8000/${details.image}`} alt={details.name} />
         </div>
         <div className='description'>
           <h2>{details.name}</h2>
           <p>{details.description}</p>
-          {/* <button
-            type='submit'
-            className='button'
-            onClick={cartHandler}
-          >Add To Cart</button> */}
         </div>
-      </form>
+      </div>
 
       <div className='featured'>
         <h4 className='section-heading'> Related Products </h4>
@@ -61,7 +56,6 @@ function DetailPage() {
 
               return (
                 <Link to={`/details/${each.slug}`} >
-
                   <li key={each.id}>
                     <img src={`http://127.0.0.1:8000/${each.image}`} alt={each.name} />
                     <p className='popular-cat'>{each.category}</p>

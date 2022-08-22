@@ -22,6 +22,7 @@ import About from './Pages/About'
 import AuthContext from './Store/AuthContext'
 import Loading from './components/Loading';
 import CartOverlay from './components/CartOverlay'
+import Auth from './Pages/Auth'
 
 
 
@@ -53,6 +54,9 @@ function App() {
             <SignUp />
           </Route>
 
+            <Route path='/auth/:name'>
+            <Auth />
+            </Route>
 
           <Route path='/all/:id'>
             <PopularProducts />

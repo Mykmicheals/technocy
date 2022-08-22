@@ -71,8 +71,8 @@ function Navigation() {
       </span>
 
       {!authCtx.isLoggedIn && <span className="nav-span">
-        <NavLink to="/login">
-          <span>Login</span>
+        <NavLink to="auth/login">
+          <span onClick={showLoading}>Login</span>
         </NavLink>
       </span>}
 

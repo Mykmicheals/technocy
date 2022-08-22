@@ -26,50 +26,59 @@ function Category() {
             {loading && <div className='category'>
                 <div className='category-left'>
                     <div className='category-left-first'>
-                        <div id='cat1'>
-                            <div id='cat-word'>
-                                <h3>SmartPhones</h3>
-                                <p>1,423 products</p>
+                        <Link to={'/category/phones/'}>
+                            <div id='cat1'>
+                                <div id='cat-word'>
+                                    <h3>SmartPhones</h3>
+                                    <p>1,423 products</p>
+                                </div>
+                                <img id='cat-img' src={`http://127.0.0.1:8000/${popular[0]?.image}`} alt={popular[0].name} />
                             </div>
-                            <img id='cat-img' src={`http://127.0.0.1:8000/${popular[0]?.image}`} alt={popular[0].name} />
-                        </div>
+                        </Link>
                     </div>
                     <div className='category-left-second'>
-                        <div id='cat2'>
-                            <div id='cat-word'>
-                                <h3>Laptops</h3>
-                                <p>918 products</p>
+                        <Link to={'/category/laptops/'}>
+                            <div id='cat2'>
+                                <div id='cat-word'>
+                                    <h3>Laptops</h3>
+                                    <p>918 products</p>
+                                </div>
+                                <img id='cat-img' src={`http://127.0.0.1:8000/${popular[1].image}`} alt={popular[1].name} />
                             </div>
-                            <img id='cat-img' src={`http://127.0.0.1:8000/${popular[1].image}`} alt={popular[1].name} />
-                        </div>
-                        <div id='cat3'>
-                            <div id='cat-word'>
-                                <h3>Home Appliances</h3>
-                                <p>1,200 products</p>
+                        </Link>
+
+                        <Link to={'/category/laptops/'}>
+                            <div id='cat3'>
+                                <div id='cat-word'>
+                                    <h3>Home Appliances</h3>
+                                    <p>1,200 products</p>
+                                </div>
+                                <img id='cat-img' src={`http://127.0.0.1:8000/${popular[5].image}`} alt={popular[1].name} />
                             </div>
-                            <img id='cat-img' src={`http://127.0.0.1:8000/${popular[5].image}`} alt={popular[1].name} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
-                <div className='category-left'>
+                <div className='category-left category-right'>
 
                     <div className='category-left-first'>
-                        <div id='cat1'>
-                            <div id='cat-word'>
-                                <h3>Televisions</h3>
-                                <p>98 products</p>
+                        <Link to={'/category/television/'}>
+                            <div id='cat1'>
+                                <div id='cat-word'>
+                                    <h3>Televisions</h3>
+                                    <p>98 products</p>
+                                </div>
+                                <img id='cat-img' src={`http://127.0.0.1:8000/${popular[2].image}`} alt={popular[3].name} />
                             </div>
-                            <img id='cat-img' src={`http://127.0.0.1:8000/${popular[2].image}`} alt={popular[3].name} />
-                        </div>
+                        </Link>
                     </div>
                     <div className='category-left-second'>
                         <div id='cat2'>
                             <div id='cat-word'>
                                 <h3>Airpods</h3>
-                                <p>314 products</p>  
+                                <p>314 products</p>
                             </div>
-                           
-                            <img id='cat-img' src={`http://127.0.0.1:8000/${popular[4].image}`} alt={popular[3].name}/>
+
+                            <img id='cat-img' src={`http://127.0.0.1:8000/${popular[4].image}`} alt={popular[3].name} />
                         </div>
                         <div id='cat3'>
                             <div id='cat-word'>
