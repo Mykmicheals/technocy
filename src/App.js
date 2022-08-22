@@ -23,6 +23,7 @@ import AuthContext from './Store/AuthContext'
 import Loading from './components/Loading';
 import CartOverlay from './components/CartOverlay'
 import Auth from './Pages/Auth'
+import EmailVerify from './Pages/EmailVerify'
 
 
 
@@ -56,6 +57,10 @@ function App() {
 
             <Route path='/auth/:name'>
             <Auth />
+            </Route>
+
+            <Route path='/verify-email'>
+              <EmailVerify/>
             </Route>
 
           <Route path='/all/:id'>

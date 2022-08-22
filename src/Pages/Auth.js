@@ -1,24 +1,27 @@
-import React, { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import {
     MDBInput,
     MDBCol,
     MDBRow,
     MDBCheckbox,
     MDBBtn,
-    MDBIcon,
     MDBCard,
     MDBCardBody,
     MDBCardTitle,
 } from 'mdb-react-ui-kit';
+import EmailVerify from './EmailVerify';
+import AuthContext from '../Store/AuthContext';
 
 function Auth() {
 
     const params = useParams();
 
     var signUp = params.name == 'signup'
+    let history = useHistory();
 
-    const [error, setError] = useState()
+    const [signUprror, setSignUpError] = useState(false)
+
     const [loading, setLoading] = useState(false)
 
     const [firstName, setFirstName] = useState("");
@@ -36,6 +39,7 @@ function Auth() {
     const [passwordTouched, setPasswordTouched] = useState(false);
     const passwordValid = password.trim().length > 6
     const passwordInvalid = passwordTouched && !passwordValid
+
 
     const [confirmPassword, setConfirmPassword] = useState('')
 
@@ -81,7 +85,7 @@ function Auth() {
         : "contact-form-input";
 
 
-    const formValid = emailValid && emailValid && passwordValid
+    const formValid = nameIsValid && emailValid && passwordValid
 
 
     const body = {
@@ -114,23 +118,38 @@ function Auth() {
             setEmailTouched(true)
             setNameTouched(true)
             setPasswordTouched(true)
-
         }
     }
 
+    const authCtx = useContext(AuthContext)
+
     const SignUpHandler = async (event) => {
         event.preventDefault()
-        const response = await fetch(`http://127.0.0.1:8000/auth/${signUp ? 'register' : 'login'}/`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json', 'Accept': 'application/json'
-                },
-                body: JSON.stringify(body)
-            })
+        if (formValid) {
+             authCtx.loadingHandler()
 
-        const data = await response.json()
-        console.log(data)
+            const response = await fetch(`http://127.0.0.1:8000/api/accounts/${signUp ? 'signup' : 'login'}/`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', 'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                })
+            const data = await response.json()
+            console.log(data)
+            if (data.detail) {
+                setSignUpError(true);
+            } else {
+                history.push('/verify-email')
+            }
+            // history.push(<EmailVerify />)
+        } else {
+            setEmailTouched(true)
+            setNameTouched(true)
+            setPasswordTouched(true)
+        }
+
     }
 
 
@@ -138,6 +157,7 @@ function Auth() {
         <MDBCard style={{ maxWidth: '22rem', textAlign: 'center', margin: 'auto', marginTop: '5rem' }}>
             <MDBCardBody >
                 <MDBCardTitle>{signUp ? 'SignUp' : 'Login'}</MDBCardTitle>
+                {signUprror && <h3>Email has already been taken</h3>}
                 <form>
                     {signUp && <MDBInput
                         onChange={userNameHandler} onBlur={userNameBlurHandler}
@@ -146,12 +166,10 @@ function Auth() {
                     <MDBInput
                         onChange={emailHandler} onBlur={emailBlurHandler}
                         className={`mt-4 ${emailClass}`} type='email' id='form2Example1' label='Email address' />
+                    {emailInvalid && <small className="error">Enter a valid email address </small>}
                     <MDBInput
-                        onChange={passwordHandler}
+                        onChange={passwordHandler} onBlur={passwordBlur}
                         className='mt-4' type='password' id='form2Example2' label='Password' />
-                    {signUp && <MDBInput
-                        onChange={passwordHandler}
-                        className={`mt-4 ${passwordClass}`} type='password' id='form2Example2' label='Confirm-password' />}
                     {passwordInvalid && <small className='error' >Password Must be more than 6 characters</small>}
 
                     <MDBRow className='mb-4'>
@@ -172,23 +190,9 @@ function Auth() {
                             <p>  Not a member? <Link to='/auth/signup'>Register</Link>   </p>
                         }
 
-                        {signUp ? <p>or sign up with:</p> : <p>or Login with:</p>}
+                        {!signUp && <p>password reset?</p>}
 
-                        <MDBBtn floating className='mx-1'>
-                            <MDBIcon fab icon='facebook-f' />
-                        </MDBBtn>
 
-                        <MDBBtn floating className='mx-1'>
-                            <MDBIcon fab icon='google' />
-                        </MDBBtn>
-
-                        <MDBBtn floating className='mx-1'>
-                            <MDBIcon fab icon='twitter' />
-                        </MDBBtn>
-
-                        <MDBBtn floating className='mx-1'>
-                            <MDBIcon fab icon='github' />
-                        </MDBBtn>
                     </div>
                 </form>
 
