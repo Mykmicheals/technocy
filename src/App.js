@@ -59,7 +59,7 @@ function App() {
             <Auth />
             </Route>
 
-            <Route path='/verify-email'>
+            <Route path='/verifyEmail'>
               <EmailVerify/>
             </Route>
 

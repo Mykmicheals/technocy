@@ -4,14 +4,15 @@ import {
     MDBInput,
     MDBCol,
     MDBRow,
-    MDBCheckbox,
+    MDBSpinner,
     MDBBtn,
     MDBCard,
     MDBCardBody,
     MDBCardTitle,
 } from 'mdb-react-ui-kit';
-import EmailVerify from './EmailVerify';
+
 import AuthContext from '../Store/AuthContext';
+import Loading from '../components/Loading';
 
 function Auth() {
 
@@ -85,7 +86,7 @@ function Auth() {
         : "contact-form-input";
 
 
-    const formValid = nameIsValid && emailValid && passwordValid
+    const formValid = signUp ? (nameIsValid && emailValid && passwordValid) : (emailValid && passwordValid)
 
 
     const body = {
@@ -126,9 +127,9 @@ function Auth() {
     const SignUpHandler = async (event) => {
         event.preventDefault()
         if (formValid) {
-             authCtx.loadingHandler()
+            setLoading(true);
 
-            const response = await fetch(`http://127.0.0.1:8000/api/accounts/${signUp ? 'signup' : 'login'}/`,
+            const response = await fetch(`http://127.0.0.1:8000/${signUp ? 'signup' : 'login'}/`,
                 {
                     method: 'POST',
                     headers: {
@@ -136,14 +137,19 @@ function Auth() {
                     },
                     body: JSON.stringify(body)
                 })
+            setLoading(false);
             const data = await response.json()
             console.log(data)
-            if (data.detail) {
-                setSignUpError(true);
-            } else {
-                history.push('/verify-email')
-            }
-            // history.push(<EmailVerify />)
+            signUp && history.push('/verifyEmail')
+            !signUp && history.push('/')
+
+
+            // if (data.detail) {
+            //     setSignUpError(true);
+            // } else {
+            //     history.push('/verifyEmail')
+            // }
+
         } else {
             setEmailTouched(true)
             setNameTouched(true)
@@ -154,52 +160,55 @@ function Auth() {
 
 
     return (
-        <MDBCard style={{ maxWidth: '22rem', textAlign: 'center', margin: 'auto', marginTop: '5rem' }}>
-            <MDBCardBody >
-                <MDBCardTitle>{signUp ? 'SignUp' : 'Login'}</MDBCardTitle>
-                {signUprror && <h3>Email has already been taken</h3>}
-                <form>
-                    {signUp && <MDBInput
-                        onChange={userNameHandler} onBlur={userNameBlurHandler}
-                        className={`mt-4 ${NameClass}`} type='username' id='form2Example1' label=' Username' />}
-                    {nameInvalid && <small className="error">Name must be greater than 2 characters </small>}
-                    <MDBInput
-                        onChange={emailHandler} onBlur={emailBlurHandler}
-                        className={`mt-4 ${emailClass}`} type='email' id='form2Example1' label='Email address' />
-                    {emailInvalid && <small className="error">Enter a valid email address </small>}
-                    <MDBInput
-                        onChange={passwordHandler} onBlur={passwordBlur}
-                        className='mt-4' type='password' id='form2Example2' label='Password' />
-                    {passwordInvalid && <small className='error' >Password Must be more than 6 characters</small>}
+        <div>
+            <MDBCard style={{ maxWidth: '22rem', textAlign: 'center', margin: 'auto', marginTop: '7rem' }}>
+                <MDBCardBody >
+                    <MDBCardTitle>{signUp ? 'SignUp' : 'Login'}</MDBCardTitle>
+                    {signUprror && <h3>Email has already been taken</h3>}
+                    <form>
+                        {signUp && <MDBInput
+                            onChange={userNameHandler} onBlur={userNameBlurHandler}
+                            className={`mt-4 ${NameClass}`} type='username' id='form2Example1' label=' Username' />}
+                        {nameInvalid && <small className="error">Name must be greater than 2 characters </small>}
+                        <MDBInput
+                            onChange={emailHandler} onBlur={emailBlurHandler}
+                            className={`mt-4 ${emailClass}`} type='email' id='form2Example1' label='Email address' />
+                        {emailInvalid && <small className="error">Enter a valid email address </small>}
+                        <MDBInput
+                            onChange={passwordHandler} onBlur={passwordBlur}
+                            className='mt-4' type='password' id='form2Example2' label='Password' />
+                        {passwordInvalid && <small className='error' >Password Must be more than 6 characters</small>}
 
-                    <MDBRow className='mb-4'>
-                        <MDBCol className='d-flex justify-content-center'>
-                            <MDBCheckbox id='form2Example3' label='Remember me' defaultChecked />
-                        </MDBCol>
-                        <MDBCol>
-                            <a href='#!'>Forgot password?</a>
-                        </MDBCol>
-                    </MDBRow>
+                        <MDBRow className='mb-4'>
 
-                    <MDBBtn onClick={SignUpHandler} type='submit' className='mb-4' block>
-                        {signUp ? 'SignUp' : 'Login'}
-                    </MDBBtn>
+                            <MDBCol>
+                                <a href='#!'>Forgot password?</a>
+                            </MDBCol>
+                        </MDBRow>
 
-                    <div className='text-center'>
-                        {signUp ? <p>  Have an Accout? <Link to='/auth/login'>Login</Link>   </p> :
-                            <p>  Not a member? <Link to='/auth/signup'>Register</Link>   </p>
-                        }
+                        {!loading ? <MDBBtn
+                            style={{ backgroundColor: '#831d34' }}
+                            onClick={SignUpHandler} type='submit' className='mb-4' block>
+                            {signUp ? 'SignUp' : 'Login'}
+                        </MDBBtn>
+                            :
+                            <MDBBtn disabled
+                                style={{ backgroundColor: '#831d34' }}
+                            >
+                                <MDBSpinner size='sm' role='status' tag='span' className='me-2' />
+                                Loading...
+                            </MDBBtn>}
+                        <div className='text-center'>
+                            {signUp ? <p>  Have an Accout? <Link to='/auth/login'>Login</Link>   </p> :
+                                <p>  Not a member? <Link to='/auth/signup'>Register</Link>   </p>
+                            }
 
-                        {!signUp && <p>password reset?</p>}
-
-
-                    </div>
-                </form>
-
-            </MDBCardBody>
-
-
-        </MDBCard>
+                            {!signUp && <p>password reset?</p>}
+                        </div>
+                    </form>
+                </MDBCardBody>
+            </MDBCard>
+        </div>
 
     )
 }

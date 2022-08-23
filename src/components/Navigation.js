@@ -19,7 +19,6 @@ function Navigation() {
 
   const cartHandler = (event) => {
     cartCrx.cartFunc()
-    console.log(cartCrx.cartOpen)
   };
 
 

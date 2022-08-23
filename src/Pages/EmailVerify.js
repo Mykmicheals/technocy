@@ -1,15 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function EmailVerify() {
     return (
-        <div style={{
-            // position: 'absolute',
-            maxHeight :'100%',
-            top: '50%',
-            left: '50%'
-        }}>
+        <div className='email-verify'>
             <p>A verification link has been sent to your email, please click the link and login. Thanks</p>
+        <Link to='/'>Home</Link>
         </div>
+      
     )
 }
 
