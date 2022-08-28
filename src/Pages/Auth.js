@@ -86,7 +86,7 @@ function Auth() {
         : "contact-form-input";
 
 
-    const formValid = signUp ? (nameIsValid && emailValid && passwordValid) : (emailValid && passwordValid)
+    const formValid = signUp ? (nameIsValid && emailValid && passwordValid) : (emailValid && passwordValidcle)
 
 
     const body = {
